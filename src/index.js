@@ -1,10 +1,22 @@
 import '../public/style.scss';
 
 import {
+  searchForm,
+  searchInput,
+  imagesWrapper,
+  paginationWrapper,
+  modal,
+  paginations,
+  prevModalBtn,
+  nextModalBtn
+} from './domElements';
+
+import {
   handleOpenModal,
   handleCloseModal,
   traverseImagesWithinModal,
-  triggerModalTransition
+  triggerModalTransition,
+  cancelImageLoad
 } from './modal';
 
 import {
@@ -16,19 +28,7 @@ import {
 document.addEventListener("DOMContentLoaded", () => {
   console.log(`loaded!`);
 
-  // getElementById computes faster and it's good to separate the CSS and JS
-  // one way to know what is being manipulated by looking at the HTML
-  const searchForm = document.getElementById("searchForm");
-  const searchInput = document.getElementById("searchInput");
-  const imagesWrapper = document.getElementById("imagesWrapper");
-  const paginationWrapper = document.getElementById("paginationWrapper");
-  const modal = document.getElementById("modal");
-  const paginations = Array.from(paginationWrapper.querySelectorAll(".pagination__circle"));
-  const prevModalBtn = document.getElementById("modalPrevBtn");
-  const nextModalBtn = document.getElementById("modalNextBtn");
-
   let searchQuery; // easiest to keep track of most current search and to be used when switching pages
-
   let initialBatch = true; // distinguish which images to load in modal and when pagination dots are activated
   let justSearched = false; // help identify which dots to set as active
 
@@ -37,62 +37,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // <-- EVENT LISTENERS -->
 
+  // user searches for some images via form and input
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
+    cancelImageLoad();
 
     initialBatch = false;
     justSearched = true;
     searchQuery = searchInput.value;
+
     handleSearch(searchQuery, 1);
     searchInput.blur();
     manageActivePage();
   })
 
+  // I like how you can still see the last previously searched term (if there was one) and just clearing out when going to search again
   searchInput.addEventListener("focus", e => {
     if (searchInput.value) {
       searchInput.value = "";
     }
   })
 
+  // event delegation--no need for 5 separate event listeners
   paginationWrapper.addEventListener("click", e => {
     handleSwitchPages(e.target);
   })
 
+  // to open an image in the modal when clicked on
   imagesWrapper.addEventListener("click", e => {
     const check = e.target.dataset.type === 'pic';
 
     if (check) {
-      const picture = e.target.dataset;
+      cancelImageLoad();
+      const picture = e.target;
       modal.style.width = 'calc(100% - 2rem)';
 
       if (window.innerWidth > 768) {
         modal.style.transformOrigin = `${e.clientX}px ${e.clientY}px`;
-        modal.addEventListener("transitionend", (event) => triggerModalTransition(event, e.target));
-        // modal.addEventListener("transitionend", (event) => triggerModalTransition(event, picture));
+        modal.addEventListener("transitionend", (event) => triggerModalTransition(event, picture));
         return
       }
 
       modal.style.display = 'flex';
-      handleOpenModal(e.target);
-      // handleOpenModal(picture);
+      handleOpenModal(picture);
     }
   })
 
-  modal.addEventListener("click", e => {
-    const btnCheck = e.target.id;
 
-    switch (btnCheck) {
+  // manage modal button clicks
+  modal.addEventListener("click", e => {
+    const btn = e.target;
+
+    switch (btn.id) {
       case 'modalCloseBtn':
         handleCloseModal();
         return
 
       case 'modalPrevBtn':
-        e.target.blur();
+        btn.blur();
         traverseImagesWithinModal('prev');
         return
 
       case 'modalNextBtn':
-        e.target.blur();
+        btn.blur();
         traverseImagesWithinModal('next');
         return
 
@@ -101,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
+  // manage certain 'key' keydown events for keyboard accessibility
   document.addEventListener("keydown", e => {
     const enterCode = 13;
     // const escCode = 27;
@@ -131,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (e.keyCode === enterCode && document.activeElement.className === 'image__container') {
       handleOpenModal(document.activeElement);
-      // handleOpenModal(document.activeElement.dataset);
       return
     }
   })
@@ -143,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // // for pagination changes via keyboard and click events
   const handleSwitchPages = (element) => {
 
+    cancelImageLoad();
     justSearched = false;
     const className = element.dataset.class;
     const pageNum = +element.dataset.id;
@@ -161,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     manageActivePage(element);
   }
 
+  // handle which pagination dot to be active under certain circumstances
   const manageActivePage = (paginationDot) => {
 
     if ((!initialBatch && justSearched) || paginationDot) {
@@ -179,132 +188,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
-// const handleSearch = (searchQuery) => {
-//   const cachedData = getFromCache();
-
-//   if (cachedData) {
-//     photos = cachedData;
-//   }
-
-//   handleFetch();
-// }
-
-// const handleFetch = _ => {
-
-//   const url = `http://localhost:3000/search`;
-//   const options = {
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({
-//       pageNum: pageNumber,
-//       searchQuery
-//     })
-//   }
-
-//   fetch(url, options).then(r => r.json()).then(r => {
-//     console.log(r);
-
-//     if (r.error) {
-//       alert(error);
-//       return
-//     }
-
-//     if (!r.photos.length) {
-//       alert(`Sorry, I'm getting nada for '${searchQuery}'`);
-//       return
-//     }
-
-//     photos = r.photos;
-//     addToCache(r.numOfPages);
-
-//     console.log(cache);
-
-//     displayPhotos();
-//     displayPagination(r.numOfPages);
-//   })
-// }
-
-// const displayPagination = (numOfPages) => {
-//   manageActivePage();
-
-//   if (numOfPages >= 5) {
-//     const hiddenPages = paginations.filter(el => Array.from(el.classList).includes("hide"));
-//     if (hiddenPages) {
-//       hiddenPages.forEach(el => {
-//         el.classList.remove("hide");
-//       })
-//     }
-//   }
-
-//   if (numOfPages >= 1 && numOfPages < 5) {
-//     for (let i = numOfPages; i <= 5; i++) {
-//       paginations[i - 1].classList.add("hide");
-//     }
-//   }
-
-//   if (Array.from(paginationWrapper.classList).includes("hide")) {
-//     paginationWrapper.classList.remove("hide");
-//   }
-// }
-
-// const displayPhotos = (initial) => {
-//   if (!photos) return
-//   imagesWrapper.innerHTML = "";
-
-//   photos.forEach(pic => {
-//     imagesWrapper.appendChild(imageEl(pic));
-//   })
-
-//   // masonry = Array.from(imagesWrapper.children);
-
-//   if (!initial) {
-//     resetActiveElement();
-//     window.scroll({
-//       top: imagesContainer.offsetTop,
-//       behavior: "smooth"
-//     });
-//   }
-// }
-
-// const manageInitialBatches = _ => {
-//   photos = cache["initial50"][pageNumber - 1].photos;
-// }
-
-// const addToCache = (numOfPages) => {
-
-//   const newCacheItem = {
-//     pageNum: pageNumber,
-//     photos,
-//     numOfPages
-//   };
-
-//   // first time searching this term
-//   if (!cache[searchQuery]) {
-//     cache[searchQuery] = [newCacheItem];
-//   };
-
-//   // already searched this term but not this page
-//   if (cache[searchQuery]) {
-//     const cacheItem = cache[searchQuery].find(el => el.pageNum === pageNumber);
-
-//     if (!cacheItem) {
-//       cache[searchQuery].push(newCacheItem);
-//     };
-//   }
-// }
-
-// const getFromCache = () => {
-
-//   if (cache[searchQuery]) {
-//     const cacheItem = cache[searchQuery].find(el => el.pageNum === pageNumber);
-
-//     if (cacheItem) {
-//       return cacheItem.photos;
-//     };
-//   }
-
-//   return null
-// }

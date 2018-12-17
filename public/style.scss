@@ -285,10 +285,12 @@ body {
       border-bottom: 1px solid rgba(100, 100, 100, 0.5);
       margin: 0;
       background-color: floralwhite;
+      display: none;
     }
 
     .modal__image__details {
-      display: grid;
+      // display: grid;
+      display: none;
       grid-template-columns: auto auto auto;
       width: 100%;
       height: 3rem;

@@ -1,8 +1,10 @@
-const searchInput = document.getElementById("searchInput");
-const paginationWrapper = document.getElementById("paginationWrapper");
-const paginations = Array.from(paginationWrapper.querySelectorAll(".pagination__circle"));
-const imagesWrapper = document.getElementById("imagesWrapper");
-const imagesContainer = document.getElementById("imagesContainer");
+import {
+  searchInput,
+  paginationWrapper,
+  paginations,
+  imagesContainer,
+  imagesWrapper
+} from './domElements';
 
 const cache = {};
 let photos, pageNumber, numberOfPages;
