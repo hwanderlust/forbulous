@@ -265,6 +265,18 @@ body {
       object-fit: contain;
     }
 
+    .preview {
+      filter: blur(2vw);
+      transform: scale(1.05);
+    }
+
+    .reveal {
+      position: absolute;
+      will-change: transform,
+        opacity;
+      animation: reveal 1s ease-out;
+    }
+
     .modal__image__desc {
       width: 100%;
       text-align: center;
@@ -393,6 +405,18 @@ body {
     height: 100%;
     top: 100%;
     opacity: 0;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
