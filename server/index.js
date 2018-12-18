@@ -5,7 +5,7 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser')
 const splashKey = process.env.SPLASH_KEY;
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 const corsOptions = {
