@@ -7,6 +7,7 @@ Quickly navigate with your mouse, touchpad, touch device or the keyboard!
 
 # get started
 Check out the [live demo](https://forbulous-app.herokuapp.com/index.html)! Deployed the front end and the back end API to heroku for your convenience.
+**Initial load of page may take longer than you and I may like, Heroku purposely throttles applications with less traffic**
 
 If you'd like it locally, then do the following:
 * clone
