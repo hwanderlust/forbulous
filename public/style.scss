@@ -1,12 +1,12 @@
-@import 'variables';
-@import 'header';
-@import 'search';
-@import 'masonry';
-@import 'footer';
-@import 'modal';
-@import 'animations';
-@import 'media-query768';
-@import 'media-query-mobile';
+@import './partials/variables';
+@import './partials/header';
+@import './partials/search';
+@import './partials/masonry';
+@import './partials/footer';
+@import './partials/modal';
+@import './partials/animations';
+@import './partials/media-query768';
+@import './partials/media-query-mobile';
 
 body {
   margin: 0;
