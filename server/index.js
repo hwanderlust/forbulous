@@ -20,10 +20,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
 
 app.get('/initial-load', cors(corsOptions), (req, res) => {
-  // const url = `https://api.unsplash.com/photos/random?count=10`
 
   const fetches = [`https://api.unsplash.com/photos/random?count=25`, `https://api.unsplash.com/photos/random?count=25`];
   const options = {
@@ -41,14 +40,6 @@ app.get('/initial-load', cors(corsOptions), (req, res) => {
     })
   }).catch(err => res.sendStatus(400));
 
-  // fetch(url, options).then(r => r.json())
-  //   .then(r => {
-  //     res.json({
-  //       photos: serialize(r),
-  //       numOfPages: 1
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
 });
 
 app.post('/search', cors(corsOptions), (req, res) => {
@@ -67,7 +58,6 @@ app.post('/search', cors(corsOptions), (req, res) => {
   fetch(url, options).then(r => r.json())
     .then(r => {
 
-      // console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~`, r.results);
       const photos = serialize(r.results);
 
       if (photos.error) {
