@@ -10,7 +10,8 @@ const cache = {};
 let photos, pageNumber, numberOfPages;
 
 export const handleInitialFetch = () => {
-  const url = `http://localhost:3000/initial-load`;
+  // const url = `http://localhost:3000/initial-load`;
+  const url = `https://forbulous-api.herokuapp.com/initial-load`;
   const options = {
     method: 'GET',
     headers: {
@@ -107,7 +108,8 @@ export const handleSearch = (searchQuery, pageNum) => {
 
 const handleFetch = searchQuery => {
 
-  const url = `http://localhost:3000/search`;
+  const url = `https://forbulous-api.herokuapp.com/search`;
+  // const url = `http://localhost:3000/search`;
   const options = {
     method: 'POST',
     headers: {

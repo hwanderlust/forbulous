@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV !== "production";
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "/build"),
     filename: "[name].[hash].js",
     publicPath: "/"
   },
@@ -47,9 +47,26 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
+              mozjpeg: {
+                progressive: true,
+                quality: 80
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
+            }
           },
         ],
       }
@@ -63,7 +80,7 @@ module.exports = {
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
     }),
-    new CleanWebpackPlugin(["dist"])
+    new CleanWebpackPlugin(["build"])
   ],
   optimization: {
     splitChunks: {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Bowlby+One|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/public/font-awesome.min.css">
+
+  <title>Forbulous</title>
+</head>
+
+<body>
+
+  <header class='heading__container'>
+    <figure class='banner__wrapper'>
+      <div class='heading__banner'>
+        <h1 class='heading__banner__text'>Forbulous</h1>
+      </div>
+    </figure>
+  </header>
+
+  <section class='search__container'>
+    <form id="searchForm" class='search__form'>
+      <label class='search__form__label' for="search-query">What type of <em>forbulous</em> images does yee
+        heart <em>desire?</em></label>
+      <input id="searchInput" class='search__form__input' type='input' name='search-query' placeholder="new zealand" />
+    </form>
+  </section>
+
+  <main id='imagesContainer' class='images__container'>
+
+    <div id="imagesWrapper" class='images__wrapper'>
+    </div>
+
+    <div class='images__pagination__container'>
+      <div id='paginationWrapper' class='pagination__wrapper hide'>
+        <span data-id="1" data-class="circle" class='pagination__circle active' tabindex="0"></span>
+        <span data-id="2" data-class="circle" class='pagination__circle' tabindex="0"></span>
+        <span data-id="3" data-class="circle" class='pagination__circle' tabindex="0"></span>
+        <span data-id="4" data-class="circle" class='pagination__circle' tabindex="0"></span>
+        <span data-id="5" data-class="circle" class='pagination__circle' tabindex="0"></span>
+      </div>
+    </div>
+  </main>
+
+  <footer class='footer'>
+    <section class='social'>
+      <ul>
+        <li><a href='#'><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+        <li><a href='#'><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+        <li><a href='#'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href='#'><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+        <li><a href='#'>blog</a></li>
+      </ul>
+    </section>
+
+    <section class='about'>
+      <ul>
+        <li><a href='#'>about</a></li>
+        <li><a href='#'>news</a></li>
+        <li><a href='#'>careers</a></li>
+        <li><a href='#'>events</a></li>
+      </ul>
+    </section>
+
+    <section class='extra'>
+      <ul>
+        <li><a href='#'>faq</a></li>
+        <li><a href='#'>privacy</a></li>
+        <li><a href='#'>&copy 2018</a></li>
+      </ul>
+    </section>
+  </footer>
+
+  <div id="modal" class='modal'>
+    <button id='modalCloseBtn' class='modal__button modal__button--close' tabindex="0">X</button>
+    <button id='modalPrevBtn' class='modal__button modal__button--prev' tabindex="0">
+      <</button> <button id='modalNextBtn' class='modal__button modal__button--next' tabindex="0">>
+    </button>
+
+    <div id='modalContents' class='modal__contents'>
+
+      <img id='previewImage' class='modal__image preview' />
+      <img id='modalImage' class='modal__image' />
+
+      <p id='modalImgDesc' class='modal__image__desc'>description here</p>
+
+      <section id='modalImageDetails' class='modal__image__details'>
+        <span id='modalImgDate' class='modal__image__date'>Dec 13,2018</span>
+        <span id='modalImgLikes' class='modal__image__likes'>999</span>
+        <span id='modalImgUsername' class='modal__image__username'>someone</span>
+      </section>
+    </div>
+  </div>
+
+<script type="text/javascript" src="/main.6a7aa1074442612d92cf.js"></script></body>
+
+</html>
