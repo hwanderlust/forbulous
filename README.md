@@ -6,10 +6,14 @@ On page load you will be presented with 50 random images broken up in chunks of 
 Quickly navigate with your mouse, touchpad, touch device or the keyboard!
 
 # get started
+Check out the [live demo](https://forbulous-app.herokuapp.com/index.html)! Deployed the front end and the back end API to heroku for your convenience.
+
+If you'd like it locally, then do the following:
 * clone
 * npm install
+* in photos.js change the fetch urls to localhost:3000 instead
 * npm run server & npm start
-*environment variables are included in the .gitignore file for security and privacy purposes*
+*environment variables are included in the .gitignore file for security and privacy purposes, and therefore you may need your own .env file with an unsplash key and register the app with it*
 
 ## technologies
 * Custom Express API restricting access via CORS to only its own front end
