@@ -1,0 +1,50 @@
+.heading__container {
+  @extend %align-center-flex;
+  position: relative;
+  height: $lg-height;
+  overflow: hidden;
+
+  .banner__wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    .heading__banner {
+      background: $banner-bg;
+      background-size: cover;
+      background-position-y: center;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+
+      .heading__banner__text {
+        @extend %col-center-flex;
+        padding-left: 5rem;
+        height: $sm-height;
+        background-color: $banner-text-bg-color;
+        width: 20rem;
+        font-size: $lg-font;
+        font-family: $primary-font;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // active for mobile 'touch'
+  &:hover,
+  &:active {
+    &:after {
+      content: "Photo by A L L E F . V I N I C I U S Δ";
+      position: absolute;
+      top: 7rem;
+      right: 0;
+      padding: 0.5rem;
+      margin-left: 3rem;
+      background-color: $black;
+      color: $search-bg-color;
+      transform: translateX(7rem) rotate(90deg);
+    }
+  }
+}

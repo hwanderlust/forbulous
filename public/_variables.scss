@@ -1,0 +1,50 @@
+$primary-font: 'Bowlby One',
+cursive;
+$secondary-font: 'Open Sans',
+sans-serif;
+$lg-font: 3rem;
+$md-font: 2rem;
+$sm-font: 1rem;
+$emphasized-btn: 1.5rem;
+$normal-footer-font: 0.8rem;
+$small-footer-font: 0.6rem;
+
+$banner-bg: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+url('./forbulous-unsplash2.jpg');
+$banner-text-bg-color: lightseagreen;
+$search-bg-color: peachpuff;
+$focused-element: 5px double orangered;
+
+$black: rgb(0, 0, 0);
+$dark-trans-black: rgba(0, 0, 0, 0.9);
+$med-trans-black: rgba(0, 0, 0, 0.8);
+$dark-grey: rgba(50, 50, 50, 0.5);
+$grey: rgba(100, 100, 100, 0.5);
+$inactive-page-dot: lightgray;
+$active-page-dot: grey;
+
+$modal-space-between-viewport: 1rem;
+$clicked-size: scale(0.9);
+$lg-height: 30rem;
+$md-height: 20rem;
+$sm-height: 10rem;
+$footer-height: 12rem;
+$pagination-reg-height: 5rem;
+$pagination-sm-height: 2rem;
+$masonry-reg-height: 15rem;
+$masonry-mobile-height: 20rem;
+
+%reg-center-flex {
+  display: flex;
+  justify-content: center;
+}
+
+%align-center-flex {
+  @extend %reg-center-flex;
+  align-items: center;
+}
+
+%col-center-flex {
+  @extend %align-center-flex;
+  flex-direction: column;
+}

@@ -1,0 +1,24 @@
+.search__container {
+  @extend %reg-center-flex;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: $search-bg-color;
+
+  .search__form {
+    @extend %col-center-flex;
+    height: $sm-height;
+
+    .search__form__label {
+      font-size: $md-font;
+    }
+
+    .search__form__input {
+      width: 100%;
+      font-family: $secondary-font;
+      font-size: $sm-font;
+      line-height: 2rem;
+      text-align: center;
+    }
+  }
+}

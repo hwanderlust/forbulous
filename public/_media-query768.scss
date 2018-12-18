@@ -1,0 +1,59 @@
+@media (max-width: 768px) {
+  .images__container {
+    padding: 0;
+
+    .images__wrapper {
+      justify-content: center;
+
+      .image__container {
+        width: 100%;
+        height: $masonry-mobile-height;
+        background-position-y: unset;
+        margin-bottom: 0;
+      }
+
+      .image__container:focus {
+        // outline doesn't cover full element so switched to border
+        outline: initial;
+        border: $focused-element;
+      }
+    }
+
+    .images__pagination__container {
+      margin: 0;
+
+      .pagination__wrapper {
+        width: 100%;
+        height: $pagination-sm-height;
+        margin: 1rem 0;
+        display: flex;
+        justify-content: space-evenly;
+
+        .pagination__circle {
+          padding: 0.7rem;
+          margin: 0;
+        }
+
+        .active {}
+      }
+
+      .hide {
+        display: none;
+      }
+    }
+  }
+
+  .modal {
+    display: none;
+
+    .modal__button--close {
+      font-size: $emphasized-btn;
+    }
+
+    .modal__contents {
+      height: unset;
+    }
+
+    .modal__image {}
+  }
+}

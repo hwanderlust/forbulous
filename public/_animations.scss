@@ -1,0 +1,56 @@
+// <-- ANIMATIONS VIA KEYFRAMES -->
+
+@keyframes appear {
+  0% {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    transform: scale(0.1);
+    transition: all 500ms ease-out,
+      transform-origin 1ms;
+  }
+
+  100% {
+    @extend %align-center-flex;
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
+    transform: scale(1);
+    top: $modal-space-between-viewport;
+    left: $modal-space-between-viewport;
+    right: $modal-space-between-viewport;
+    bottom: $modal-space-between-viewport;
+    box-shadow: 0 0 0 $modal-space-between-viewport $med-trans-black;
+    background-color: $dark-trans-black;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 1;
+  }
+
+  100% {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
